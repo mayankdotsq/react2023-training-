@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDOM  from "react-dom/client";
 
-Button=()=>{
+const Button=()=>{
     return(
         <>
-       <input type="button" defaultValue="Click here for Sign-up" onclick="msg()" />
+       <input type="button" defaultValue="Click here for Sign-up" />
         </>
     )
 }
 
-App=()=>{
+const App=()=>{
    return(<>
    <p>
    <h1>
