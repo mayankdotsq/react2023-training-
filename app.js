@@ -1,17 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
+import './style.css'
 const Data = require("./data.json");
 
-const Header = () => {
-    return (<div>Header goes here</div>)
+
+const Header = ({ navigateMenu }) => {
+
+    return (<div className="header">
+
+        <ul>
+            <li>
+                <a href="#" onClick={() => navigateMenu('home')}>Home</a>
+            </li>
+            <li>
+
+                <a href="#" onClick={() => navigateMenu('posts')}>Posts</a>
+            </li>
+        </ul>
+
+
+    </div>)
 }
+
 const PostsListing = ({ data }) => {
     const postData = data;
     const PostListItems = postData.map((post) => {
-        return(<div>
+        return (<div key={post.id}>
             <h2>{post.title}</h2>
             <p>{post.body}</p>
-            </div>);
+        </div>);
     })
     return (
         <div>
@@ -20,23 +37,34 @@ const PostsListing = ({ data }) => {
         </div>
     );
 }
+const Home = () => {
+    return (
+        <div><h1>Welcome to my Home page</h1>
+            <p>This is my First react home page</p>
+        </div>
+    )
+}
 const Posts = () => {
     return (
         <PostsListing data={Data} />
     )
 }
-const Body = () => {
-    return (<Posts />);
+const Body = ({ currentMenu }) => {
+    if (currentMenu == 'home') {
+        return (<Home />);
+    } else if (currentMenu == 'posts') {
+        return (<Posts />);
+    }
 }
 const Footer = () => {
     return (<div>footer goes here</div>)
 }
 
 const AppLayout = () => {
-
+    const [activeMenu, setActiveMenu] = useState('home');
     return (<>
-        <Header />
-        <Body />
+        <Header navigateMenu={setActiveMenu} />
+        <Body currentMenu={activeMenu} />
         <Footer />
     </>)
 }
