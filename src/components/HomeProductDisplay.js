@@ -24,6 +24,7 @@ const HomeProductDisplay = (props) => {
                         name="search"
                         className="form-control"
                         placeholder="Search by Lorem ipsum..."
+                        value={search}
                         onChange={(e) => setSearch(e.target.value)}
                       />
                       <button
