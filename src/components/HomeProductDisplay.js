@@ -3,15 +3,7 @@ import ProductListing from "../components/common/ProductListing";
 const HomeProductDisplay = (props) => {
   const [Products, setProducts] = useState(props.Products);
   const [search, setSearch] = useState("");
-
-
-  const filterProducts=()=>{
-        let filteredProds = Products.filter((product) => {
-      return product.title.toLowerCase().includes(search.toLowerCase());
-    });
-    setProducts(filteredProds);
-  }
-  return (
+    return (
     <>
       <div className="product-type">
         <div className="container">
@@ -34,12 +26,27 @@ const HomeProductDisplay = (props) => {
                         placeholder="Search by Lorem ipsum..."
                         onChange={(e) => setSearch(e.target.value)}
                       />
-                      <button type="button" name="search" onClick={()=>filterProducts}>
+                      <button
+                        type="button"
+                        name="search"
+                        onClick={(e) => {
+                          let filteredProds = Products.filter((product) => {
+                            return product.title
+                              .toLowerCase()
+                              .includes(search.toLowerCase());
+                          });
+                          setProducts(filteredProds);
+                        }}
+                      >
                         <i className="fas fa-search" />
                       </button>
-                      <a href="#" className="btn-custom">
+                      &nbsp;
+                      <button className="btn"  onClick={(e) => {
+                        setProducts(props.Products);
+                        setSearch("");
+                        }}>
                         View all
-                      </a>
+                      </button>
                     </div>
                   </div>
                   <div className="row mt-3">
