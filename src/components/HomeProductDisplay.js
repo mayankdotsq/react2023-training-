@@ -3,7 +3,7 @@ import ProductListing from "../components/common/ProductListing";
 const HomeProductDisplay = (props) => {
   const [Products, setProducts] = useState(props.Products);
   const [search, setSearch] = useState("");
-    return (
+  return (
     <>
       <div className="product-type">
         <div className="container">
@@ -40,22 +40,23 @@ const HomeProductDisplay = (props) => {
                       >
                         <i className="fas fa-search" />
                       </button>
-                      &nbsp;
-                      <button className="btn"  onClick={(e) => {
-                        setProducts(props.Products);
-                        setSearch("");
-                        }}>
-                        View all
-                      </button>
                     </div>
                   </div>
                   <div className="row mt-3">
                     <div className="col-12">
                       <div className="product-list">
                         <ProductListing Products={Products} />
-                        <a href="#" className="btn-custom">
-                          View all
-                        </a>
+                        {search != "" && (
+                          <button
+                            className="btn btn-primary"
+                            onClick={(e) => {
+                              setProducts(props.Products);
+                              setSearch("");
+                            }}
+                          >
+                            View all
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>
