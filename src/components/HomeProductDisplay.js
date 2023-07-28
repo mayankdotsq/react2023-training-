@@ -3,6 +3,14 @@ import ProductListing from "../components/common/ProductListing";
 const HomeProductDisplay = (props) => {
   const [Products, setProducts] = useState(props.Products);
   const [search, setSearch] = useState("");
+  const handleSearch = () => {
+    let filteredProds = Products.filter((product) => {
+      return product.title
+        .toLowerCase()
+        .includes(search.toLowerCase());
+    });
+    setProducts(filteredProds);
+  }
   return (
     <>
       <div className="product-type">
@@ -31,12 +39,7 @@ const HomeProductDisplay = (props) => {
                         type="button"
                         name="search"
                         onClick={(e) => {
-                          let filteredProds = Products.filter((product) => {
-                            return product.title
-                              .toLowerCase()
-                              .includes(search.toLowerCase());
-                          });
-                          setProducts(filteredProds);
+                          handleSearch()
                         }}
                       >
                         <i className="fas fa-search" />
