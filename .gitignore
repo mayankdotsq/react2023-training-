@@ -3,3 +3,5 @@
 /.parcel-cache
 /index.js
 /index.js.map
+/build
+/.vscode
