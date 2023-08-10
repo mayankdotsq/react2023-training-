@@ -12,9 +12,19 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon.ico">
     <link href="./assets/css/style.css" rel="stylesheet" type="text/css">
     <link href="./assets/css/responsive.css" rel="stylesheet" type="text/css">
-<!--     <script src="/public/assets/js/jquery-3.3.1.min.js"></script> -->
+    <script src="./assets/js/jquery-3.3.1.min.js"></script>
   </head>
 <body>
 <div id="root"></div>
 </body>
+<script>
+   $('.nav-link a').click(function (e) {
+        var linkHref = $(this).attr("href");
+        var idElement = linkHref.substr(linkHref.indexOf("#"));
+        $('html, body').animate({
+            scrollTop: $(idElement).offset().top
+        }, 1000);
+        return false;
+    });
+</script>
 </html>
